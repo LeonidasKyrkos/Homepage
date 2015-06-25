@@ -1,6 +1,7 @@
 'use strict';
 
-var $ = require('jquery');
+var weatherField = require('./weather');
 
-console.log("jQuery verison: "+$().jquery);
+var container = document.getElementById('canvas');
 
+var starfield = new weatherField(container);
