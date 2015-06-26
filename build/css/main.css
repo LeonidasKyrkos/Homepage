@@ -135,6 +135,83 @@ textarea {
   vertical-align: top;
 }
 
+html {
+  font-size: 62.5%;
+}
+
 body {
-  background-color: #fff;
+  background-color: #494949;
+  color: #fff;
+  font-family: "Open Sans", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-size: 19.5px;
+  font-size: 1.95rem;
+  line-height: 1.23077;
+}
+
+.pageWrapper {
+  max-width: 71.79487em;
+  margin: 0 auto;
+}
+
+.contentWrapper, .footer {
+  max-width: 57.94872em;
+  margin: 0 auto;
+  padding: 1.02564em;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  font-family: "Merriweather", Tahoma, sans-serif;
+}
+
+h1 {
+  font-size: 3.5em;
+}
+
+h2 {
+  font-size: 2.5em;
+}
+
+.header__title {
+  text-align: center;
+  font-weight: 300;
+  font-family: "Reenie Beanie", Tahoma, sans-serif;
+  padding: 0.43956em 0.14652em;
+  text-transform: uppercase;
+}
+
+p {
+  padding-bottom: 1.23077em;
+}
+
+.footer {
+  background-color: rgba(255, 255, 255, 0.1);
+  margin-top: 2.5641em;
+}
+
+.footer__useful-links {
+  text-align: center;
+}
+
+.footer__useful-links > li {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.footer__useful-link {
+  margin: 0 0.51282em 0.51282em;
+  color: #8faf42;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.canvas__background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
 }

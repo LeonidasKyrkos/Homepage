@@ -1,0 +1,61 @@
+// Layout dimensions
+// -------------------------
+
+$pageWidth:					1400;
+$contentWidth: 				1130;
+
+// SHADES //
+
+$black: 					#000;
+$white: 					#fff;
+$gray: 						#8c8c8c;
+$lightGray: 				#dcdcdc;
+$lightishGray: 				#f3efe7;
+$veryLightGray:				#e9eaea;
+$shadow: 					#d2d3d3;
+$darkGray: 					#333333;
+$grayBackground: 			#494949;
+$mediumGray: 				#c5c7c6;
+
+// Grays
+// -------------------------
+$black:                 	#000 !default;
+$grayDarker:            	#222 !default;
+$grayDark:              	#333 !default;
+$gray:                  	#555 !default;
+$grayLight:             	#999 !default;
+$grayLighter:           	#eee !default;
+$white:                 	#fff !default;
+
+// COLOURS //
+
+$primaryColor: 				#007698;
+$beigeColor: 				#c3ab83;
+$brownColor: 				#c99a61;
+$tertiaryColor: 			#c5ad85;
+$darkTertiaryColor: 		#b79866;
+$secondaryColor: 			#8faf42;
+
+
+// TYPOGRAPHY //
+
+$baseFontFamily: 			'Open Sans', Arial, sans-serif;
+$baseFontSize: 				19.5;
+$baseLineHeight: 			24;
+$baseFontWeight: 			300;
+
+$tabletFontSize: 			18;
+$mobileFontSize: 			16;
+
+$secondaryFontFamily: 		'Merriweather', Tahoma, sans-serif;
+$tertiaryFontFamily: 		'Reenie Beanie', Tahoma, sans-serif;
+
+$light: 					300;
+$normal: 					400;
+$semiBold: 					600;
+$bold: 						700;
+
+
+
+$h1size: 					$baseFontSize * 3.5;
+$h2size: 					$baseFontSize * 2.5;

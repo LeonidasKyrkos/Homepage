@@ -1,6 +1,113 @@
 @import 'bourbon';
 @import 'utils/reset';
+@import 'utils/variables';
+@import 'utils/mixins';
+
+html{
+	font-size: 62.5%;
+}
 
 body{
-	background-color: #fff;
+	background-color: $grayBackground;
+	color: $white;
+	font-family: $baseFontFamily;
+	-webkit-font-smoothing: antialiased;
+	@include font-size($baseFontSize);
+	line-height: ($baseLineHeight/$baseFontSize);
+}
+
+.pageWrapper {
+	max-width: em($pageWidth);
+	margin: 0 auto;
+}
+
+.contentWrapper {
+	max-width: em($contentWidth);
+	margin: 0 auto;
+	padding: em(20);
+	background-color: rgba($white,0.1);
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: $semiBold;
+	font-family: $secondaryFontFamily;
+}
+
+h1 {
+	font-size: em($h1size);
+}
+
+h2 {
+	font-size: em($h2size);
+}
+
+
+
+// header //
+
+$module: 	'header';
+
+.#{$module} {
+	&__title {
+		text-align: center;
+		font-weight: $light;
+		font-family: $tertiaryFontFamily;
+		padding: em(30,$h1size) em(10,$h1size);
+		text-transform: uppercase;
+	}
+}
+
+
+
+
+// typography //
+
+p {
+	padding-bottom: em($baseLineHeight);
+}
+
+
+
+
+// Footer //
+
+$module: 			'footer';
+
+.#{$module} {
+	@extend .contentWrapper;
+	background-color: rgba($white,0.1);
+	margin-top: em(50);
+
+	&__useful-links {
+		text-align: center;
+
+		> li {
+			display: inline-block;
+			vertical-align: top;
+		}
+	}
+
+	&__useful-link {
+		margin: 0 em(10) em(10);
+		color: $secondaryColor;
+		text-decoration: none;
+		font-weight: $semiBold;
+	}
+}
+
+
+
+// canvas //
+
+$module: 		'canvas';
+
+.#{$module} {
+	&__background {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 1;
+	}
 }

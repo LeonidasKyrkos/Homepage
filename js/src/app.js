@@ -1,7 +1,7 @@
 'use strict';
 
-var weatherField = require('./weather');
+var Snowfield = require('./weather');
 
 var container = document.getElementById('canvas');
 
-var starfield = new weatherField(container);
+var weather = new Snowfield(container);
