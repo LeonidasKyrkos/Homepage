@@ -1,6 +1,6 @@
-var debounce = require('./debounce');
+var $ = require('jquery');
+var debounce = require('debounce');
 var Snow = require('./snow');
-
 
 
 // just snow to begin with //
@@ -16,23 +16,29 @@ function Snowfield(el) {
 	this.minYVelocity = 2;
 	this.snowFlakes = 300;
 	this.fps = 60;
+
+	this.eventHandlers();
 	this.init();
 }
 
-Snowfield.prototype.init = function() {
-    this.width = window.innerWidth;
-    this.height = window.innerHeight;
-    
-    var canvas = document.getElementById('canvas'); 
-
-	this.canvas = canvas;
-
-    this.canvas.width = this.width;
-    this.canvas.height = this.height;
-
-    this.start();
+Snowfield.prototype.eventHandlers = function() {
+	$(window).on('resize',debounce($.proxy(this.setCanvasSize,this), 200));
 };
 
+Snowfield.prototype.init = function() {
+    this.setCanvasSize();
+    this.start();    
+};
+
+Snowfield.prototype.setCanvasSize = function() {
+	this.width = window.innerWidth;
+    this.height = window.innerHeight;
+    
+    this.canvas = document.getElementById('canvas'); 
+	this.ctx = this.canvas.getContext('2d');
+    this.canvas.width = this.width;
+    this.canvas.height = this.height;
+};
 
 
 Snowfield.prototype.start = function() {
@@ -60,23 +66,13 @@ Snowfield.prototype.snowHandler = function(currentSnowFlake,snowFlakeStatus) {
 };
 
 Snowfield.prototype.draw = function() {
-	var ctx = this.canvas.getContext('2d');
+	this.ctx.clearRect(0,0, this.width, this.height);
 
-	var background = new Image();
-	background.src = '/img/optimised/nature-images.jpg';
-	background.scope = this; 
-	background.width = this.width;
-	background.height =	this.height;
-	background.onload = function() {
-		ctx.drawImage(background,0,0,background.width,background.height);
-		var _this = background.scope;
-
-		ctx.fillStyle = ('#FFFFFF');
-		for(var i = 0; i < _this.snowFlakes.length; i++) {
-	        var snowFlake = _this.snowFlakes[i];
-	        ctx.fillRect(snowFlake.xPos, snowFlake.yPos, snowFlake.size, snowFlake.size);
-	    }
-	};
+	this.ctx.fillStyle = ('#FFFFFF');
+	for(var i = 0; i < this.snowFlakes.length; i++) {
+        var snowFlake = this.snowFlakes[i];
+        this.ctx.fillRect(snowFlake.xPos, snowFlake.yPos, snowFlake.size, snowFlake.size);
+    }
 };
 
 Snowfield.prototype.update = function() {
@@ -98,7 +94,6 @@ Snowfield.prototype.interval = function() {
     setTimeout(function(){
     	window.requestAnimationFrame(self.interval.bind(self));
     },1000/self.fps)
-	
 }
 
 

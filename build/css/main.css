@@ -150,17 +150,16 @@ body {
 }
 
 .pageWrapper {
-  max-width: 71.79487em;
+  max-width: 61.53846em;
   margin: 0 auto;
   position: relative;
   z-index: 2;
 }
 
 .contentWrapper, .footer {
-  max-width: 57.94872em;
+  max-width: 41.02564em;
   margin: 0 auto;
   padding: 1.02564em;
-  background-color: rgba(0, 0, 0, 0.5);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -179,7 +178,7 @@ h2 {
 .header__title {
   text-align: center;
   font-weight: 300;
-  font-family: "Reenie Beanie", Tahoma, sans-serif;
+  font-family: "Montserrat", Tahoma, sans-serif;
   padding: 0.43956em 0.14652em;
   text-transform: uppercase;
 }
@@ -189,7 +188,6 @@ p {
 }
 
 .footer {
-  background-color: rgba(0, 0, 0, 0.5);
   margin-top: 2.5641em;
 }
 
@@ -209,11 +207,23 @@ p {
   font-weight: 600;
 }
 
-.canvas__background {
+.canvas {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  z-index: 1;
+  background-image: url("/img/3003854.jpg");
+  background-size: cover;
+}
+
+.canvas__cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
 }
