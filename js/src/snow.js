@@ -1,8 +1,9 @@
-function Snow(x, y, size, velocity) {     
+function Snow(xPos, yPos, size, xvelocity, yvelocity) {     
     this.size = size;
-    this.velocity = velocity;
-    this.yPos = y; 
-    this.xPos = x;   
+    this.xvelocity = xvelocity;
+    this.yvelocity = yvelocity;
+    this.yPos = yPos;
+    this.xPos = xPos;
 };
 
-module.exports = Snow;
+module.exports = Snow;	

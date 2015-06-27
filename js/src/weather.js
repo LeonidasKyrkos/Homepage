@@ -10,15 +10,18 @@ function Snowfield(el) {
 	this.element = el;
 	this.canvas = null;
 	this.weatherType = 'snow';
-	this.maxVelocity = 275;
-	this.minVelocity = 100;
+	this.maxXVelocity = 3;
+	this.minXVelocity = 1;
+	this.maxYVelocity = 4;
+	this.minYVelocity = 2;
 	this.snowFlakes = 300;
+	this.fps = 60;
 	this.init();
 }
 
 Snowfield.prototype.init = function() {
     this.width = window.innerWidth;
-    this.height = window.innerHeight;		 
+    this.height = window.innerHeight;
     
     var canvas = document.getElementById('canvas'); 
 
@@ -30,37 +33,40 @@ Snowfield.prototype.init = function() {
     this.start();
 };
 
+
+
 Snowfield.prototype.start = function() {
 	var snowFlakes = [];
 	for(var i = 0; i < this.snowFlakes; i++) {
 		snowFlakes[i] = this.snowHandler(snowFlakes[i]);
 	}
 	this.snowFlakes = snowFlakes;
-
 	this.interval();
 };
 
 Snowfield.prototype.snowHandler = function(currentSnowFlake,snowFlakeStatus) {
 	var startPoint;
+	var xvelocity;
 	if(snowFlakeStatus === 'died') {
 		startPoint = 0;
 	} else {
-		startPoint = Math.floor(Math.random()*this.height);
-	}	
-	currentSnowFlake = new Snow(Math.random()*this.width, startPoint, Math.random()*2+1,(Math.random()*(this.maxVelocity - this.minVelocity))+this.minVelocity);
+		startPoint = Math.random()*this.height;
+	}
+	xvelocity = (Math.random()*(this.maxXVelocity - this.minXVelocity))+this.minXVelocity;
+	yvelocity = (Math.random()*(this.maxYVelocity - this.minYVelocity))+this.minYVelocity;
+
+	currentSnowFlake = new Snow(Math.random()*this.width, startPoint, Math.random()*2+1, xvelocity, yvelocity);
 	return currentSnowFlake;
-}
+};
 
 Snowfield.prototype.draw = function() {
 	var ctx = this.canvas.getContext('2d');
 
 	var background = new Image();
 	background.src = '/img/optimised/nature-images.jpg';
-	background.scope = this;
-	background.baseHeight = 1080;
-	background.baseWidth = 1920; 
-	background.width = background.baseWidth;
-	background.height = background.baseHeight;
+	background.scope = this; 
+	background.width = this.width;
+	background.height =	this.height;
 	background.onload = function() {
 		ctx.drawImage(background,0,0,background.width,background.height);
 		var _this = background.scope;
@@ -74,10 +80,10 @@ Snowfield.prototype.draw = function() {
 };
 
 Snowfield.prototype.update = function() {
-	var dt = 1 / this.fps;
 	for(var i = 0; i < this.snowFlakes.length; i++) {
 		var snowFlake = this.snowFlakes[i];
-		snowFlake.yPos += dt * snowFlake.velocity;
+		snowFlake.yPos += snowFlake.yvelocity;
+		snowFlake.xPos += snowFlake.xvelocity;
 
 		if(snowFlake.yPos > this.height) {
 			this.snowFlakes[i] = this.snowHandler(this.snowFlakes[i],'died');
@@ -88,7 +94,12 @@ Snowfield.prototype.update = function() {
 Snowfield.prototype.interval = function() {
 	this.update();
     this.draw();
-	window.requestAnimationFrame(this.interval.bind(this));
+    var self = this;
+    setTimeout(function(){
+    	window.requestAnimationFrame(self.interval.bind(self));
+    },1000/self.fps)
+	
 }
+
 
 module.exports = Snowfield;
